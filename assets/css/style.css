@@ -12,6 +12,18 @@ body {
 	clear: both;
 }
 
-.questions {
+.questions, #time {
 	clear: left;
+}
+
+h2 {
+	font-size: 14px;
+}
+
+.gameboard {
+	font-size: 24px;
+}
+
+.choices {
+	padding-left: 10px;
 }
