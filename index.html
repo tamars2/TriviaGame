@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>MU/TH/UR: Alien Trivia</title>
+		<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+		<!-- Added a link to Bootstrap-->
+		<link rel="stylesheet" href="./assets/css/reset.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="./assets/css/style.css">
+		<link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div class = "header">
+				<h1 id="header"></h1>
+			</div>
+		</header>
+		<div class="content">
+			<h2 id="instructions"></h2>
+			<div class="col-lg-4 col-lg-offset-4 text-center">
+				<br><button id="startButton" class="btn btn-default pull-right">START</button>
+			</div>
+		<p id="time"></p>
+		<div class="questions">	
+			<h3 id="question1"></h3><br>
+			<input type="radio" id="a1" class="radios"><label for="test1"></label>
+			<input type="radio" id="a2" class="radios"><label for="test2"></label>
+			<input type="radio" id="a3" class="radios"><label for="test3"></label>
+			<input type="radio" id="a4" class="radios"><label for="test4"></label>
+			<h3 id="question2"></h3>
+			<h3 id="question3"></h3>
+			<h3 id="question4"></h3>
+			<h3 id="question5"></h3>
+			<h3 id="question6"></h3>
+			<h3 id="question7"></h3>
+			<h3 id="question8"></h3>
+		</div>
+		</div>
+
+		<div class="score">
+			<p class="correct"></p>
+			<p class="incorrect"></p>
+			<p class="unanswered"></p>
+		</div>
+		
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+		<script type="text/javascript" src="./assets/javascript/app.js"></script>
+	</body>
+</html>

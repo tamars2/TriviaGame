@@ -1,0 +1,17 @@
+body {
+	background-color: #2f2f2f;
+	font-family: 'Orbitron', sans-serif;
+	color: #00BA00;
+	width: 100%;
+}
+
+#startButton {
+	margin: 0px auto;
+	color: #00BA00;
+	float: right;
+	clear: both;
+}
+
+.questions {
+	clear: left;
+}
