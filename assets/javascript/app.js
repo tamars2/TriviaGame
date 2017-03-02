@@ -4,6 +4,7 @@ console.log(title);
 var timer = 60,
 	correct = 0,
 	incorrect = 0,
+	userGuess,
 	questionIndex = 0;
 
 
@@ -29,6 +30,16 @@ var questions = [
 		question: "How many crew members were aboard the Nostromo?",
 		options: ["7", "6", "8"],
 		correctAnswer: 0
+	},
+	{
+		question: "What is the name of the computer on board the ship?",
+		options: ["Cousin", "Father", "Mother"],
+		correctAnswer: 2
+	},
+	{
+		question: "What are your chances?",
+		options: ["Great!", "Does not compute.", "Terrible!"],
+		correctAnswer: 1
 	}
 ];
 
@@ -40,31 +51,39 @@ function resetGame(){
 	$('#time').hide();
 };
 
+//load new question to DOM
 function loadQuestion(){
+	//if we have not completed all the questions..
 	if (questionIndex < questions.length) {
 		$('#question').html(questions[questionIndex].question);
 		$('.radios').show();
-		$('.radios').checked = false;
 		$('label[for=test1]').html(questions[questionIndex].options[0]);
 		$('label[for=test2]').html(questions[questionIndex].options[1]);
 		$('label[for=test3]').html(questions[questionIndex].options[2]);
-		$('.radios').click(function(){
-			var userGuess = $(this).attr('id');
-			console.log(userGuess);
-			//check for correct answer
-			if (userGuess == questions[questionIndex].correctAnswer) {
-				correct = correct + 1;
-				console.log(correct);
-			}
-			else {
-				incorrect = incorrect + 1;
-			}
-			questionIndex++;
-			loadQuestion();
-		});
+		// $('.radios').click(function(){
+		// 	//get id for radio button selected by user
+		// 	userGuess = $(this).attr('id');
+		// 	console.log(userGuess);
+		// 	console.log(questions[questionIndex].correctAnswer);
+		// 	//check for correct answer
+		// 	if (userGuess == questions[questionIndex].correctAnswer) {
+		// 		correct = correct + 1;
+		// 		console.log(correct + " correct");
+		// 	}
+		// 	else {
+		// 		incorrect = incorrect + 1;
+		// 		console.log(incorrect + " incorrect");
+		// 	}
+		// 	questionIndex++;
+		// 	loadQuestion();
+		// 	$('.radios').prop('checked', false);
+		// });
 
 		// $('.radios').click(loadQuestion);
 		// this.checked = false;
+	}
+	else {
+		console.log(questionIndex);
 	}
 };
 
@@ -92,6 +111,29 @@ $('button').click(function() {
   //setInterval(pulse, 0);
 });
 
+$('.radios').click(function(){
+			//get id for radio button selected by user
+			userGuess = $(this).attr('id');
+			console.log(userGuess);
+			console.log(questions[questionIndex].correctAnswer);
+			//check for correct answer
+			if (userGuess == questions[questionIndex].correctAnswer) {
+				correct = correct + 1;
+				console.log(correct + " correct");
+			}
+			else {
+				incorrect = incorrect + 1;
+				console.log(incorrect + " incorrect");
+			}
+			questionIndex++;
+			checkWin();
+			// if (questionIndex === 5) {
+			// console.log("game over man, game over!");
+			// }
+
+			loadQuestion();
+			$('.radios').prop('checked', false);
+		});
 
 //loop to print title indexes as game title, emulating typing letters to a CRT monitor
 for (var i = 0; i < title.length; i++) {
@@ -103,18 +145,28 @@ for (var i = 0; i < title.length; i++) {
     }(i));
 }
 
+function checkWin() {
+	if (correct > 2) {
+		$('.gameboard').hide();
+		$('#result').html('CONGRATS, YOU SURVIVED.');
+		$('#result').pulse();
+	}
+	else if (incorrect > 2) {
+		$('.body').html('<img src="./assets/javascript/NostromoExplodes.gif" width="100%"></img>');
+	}
+};
 //wait for title to load, then show button
 window.setTimeout(function () {
     //$('#instructions').html('Press Start to begin!');
     $('button').show();
 }, 3400);
 
-// pulse instructions
-// function pulse() {
-//     $('#instructions').fadeIn(300);
-//     $('#instructions').fadeOut(500);
-// }
-//setInterval(pulse, 1000);
+//pulse instructions
+function pulse() {
+    $('#result').fadeIn(300);
+    $('#result').fadeOut(500);
+}
+setInterval(pulse, 1000);
 
 // $(document).ready(function() {
 //     setInterval ('cursorAnimation()', 600);
