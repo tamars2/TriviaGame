@@ -1,4 +1,4 @@
-//instead of displaying the number of correct and incorrect answers, I supplied win and loss results that
+//instead of displaying the number of correct and incorrect answers, I created win and loss results that
 //change the DOM.  I thought it would be more fun to blow up the Nostromo if the timer would run out
 //or if you couldn't hit the minimum 3 correct answers.
 
@@ -12,6 +12,7 @@ var timer,
 	questionIndex = 0;
 
 //trivia questions library
+//correctAnswer is the index of the options array that corresponds with the correct answer
 var questions = [
 	{
 		question: "What is Ripley's cats' name?",
@@ -74,12 +75,15 @@ var buttonClick = new Audio('./assets/javascript/alien_danger.wav');
 
 //click start button to reveal questions and start countdown timer
 $('button').click(function() {
-  $(this).slideUp();
+  $(this).hide();
   buttonClick.play();
-  timer = 45;
+  timer = 30;
   $('#instructions').show();
   $('#time').show();
   loadQuestion();
+  setTimer();
+  //decrement timer one second every 10000 miliseconds
+  setInterval(setTimer, 1000);
 });
 
 //log the user's guess to the questions presented on screen
@@ -111,16 +115,20 @@ for (var i = 0; i < title.length; i++) {
         setTimeout(function(){
         	$('#header').append(title[i]);
         }, 150 * i);
-
     }(i));
 }
 
 //check to see if 3 questions are correctly answered
 function checkWin() {
 	if (correct > 2) {
+		resetGame();
 		$('.gameboard').hide();
 		$('#result').html('CONGRATS, YOU SURVIVED.');
-		$('#result').pulse();
+		//brute force fix for explosion after 45 sec despite winning game 
+		//not happy about this
+		//i tried a clearInterval for loop, but that broke the interval
+		//for the winning statement pulse animation, too
+    	timer = 999999;
 	}
 	else if (incorrect > 2) {
 		youLose();
@@ -144,12 +152,10 @@ setInterval(pulse, 1000);
 //start reducing time remaining
 function setTimer() {
 	timer--;
+	console.log(timer);
 	checkTime();
 	$('#time').html('Time Remaining: ' + timer);
 }
-
-//decrement timer one second every 10000 miliseconds
-setInterval(setTimer, 1000);
 
 //check to see if time has run out
 function checkTime() {

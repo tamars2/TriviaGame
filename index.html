@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>MU/TH/UR: Alien Trivia</title>
+		<!-- link all stuff -->
 		<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-		<!-- Added a link to Bootstrap-->
 		<link rel="stylesheet" href="./assets/css/reset.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,12 +14,13 @@
 	<body class="body">
 		<header>
 			<div class = "header">
-				<h1 id="header"></h1>
+				<h1 id="header"></h1><hr>
 			</div>
 		</header>
 		<div class="content">
 			<h2 id="instructions">Answer 3 out of 5 questions correctly to abort the emergency destruct system!</h2>
-			<p id="time"></p>
+			<h3 id="time"></h3>
+			
 			<div class="col-lg-4 col-lg-offset-4 text-center">
 				<br><button id="startButton" class="btn btn-default pull-right">ACTIVATE EMERGENCY DESTRUCT SYSTEM</button>
 			</div>
@@ -36,12 +37,7 @@
 			</div>
 			
 		</div>
-		<div id="result"></div>
-		<div class="score">
-			<p class="correct"></p>
-			<p class="incorrect"></p>
-			<p class="unanswered"></p>
-		</div>
+		<h4 id="result"></h4>
 		
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script type="text/javascript" src="./assets/javascript/app.js"></script>

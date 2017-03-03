@@ -1,29 +1,34 @@
 body {
-	background-color: #2f2f2f;
-	font-family: 'Orbitron', sans-serif;
-	color: #00BA00;
-	width: 100%;
+background-color: #2f2f2f;
+font-family: 'Orbitron', sans-serif;
+font-size: 24px;
+color: #00BA00;
+width: 100%;
 }
-
 #startButton {
-	margin: 0px auto;
-	color: #00BA00;
-	float: right;
-	clear: both;
+margin: 0px auto;
+color: #00BA00;
+float: right;
+clear: both;
 }
-
-.questions, #time {
-	clear: left;
+.questions {
+clear: left;
+float: right;
 }
-
-h2 {
-	font-size: 14px;
+h2, .gameboard, #result, #time {
+font-size: 24px;
 }
-
-.gameboard, #result {
-	font-size: 24px;
-}
-
 .choices {
-	padding-left: 10px;
+padding-left: 10px;
+}
+h2 {
+text-align: left;
+}
+#result {
+clear: both;
+margin: 0px auto;
+padding-right: 10px;
+}
+#time {
+clear: left;
 }
