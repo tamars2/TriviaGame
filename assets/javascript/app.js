@@ -1,3 +1,7 @@
+//instead of displaying the number of correct and incorrect answers, I supplied win and loss results that
+//change the DOM.  I thought it would be more fun to blow up the Nostromo if the timer would run out
+//or if you couldn't hit the minimum 3 correct answers.
+
 //global variables
 var title = ['M', 'U', '/', 'T', 'H', '/', 'U', 'R', ':', ' ', 'A', 'l', 'i', 'e', 'n', ' ', 'T', 'r', 'i', 'v', 'i', 'a'];
 console.log(title);
@@ -5,7 +9,6 @@ var timer,
 	correct = 0,
 	incorrect = 0,
 	userGuess,
-	myVar,
 	questionIndex = 0;
 
 //trivia questions library
@@ -49,40 +52,24 @@ function resetGame(){
 function loadQuestion(){
 	//if we have not completed all the questions..
 	if (questionIndex < questions.length) {
+		//display question
 		$('#question').html(questions[questionIndex].question);
 		$('.radios').show();
+		//display possible answers
 		$('label[for=test1]').html(questions[questionIndex].options[0]);
 		$('label[for=test2]').html(questions[questionIndex].options[1]);
 		$('label[for=test3]').html(questions[questionIndex].options[2]);
-		// $('.radios').click(function(){
-		// 	//get id for radio button selected by user
-		// 	userGuess = $(this).attr('id');
-		// 	console.log(userGuess);
-		// 	console.log(questions[questionIndex].correctAnswer);
-		// 	//check for correct answer
-		// 	if (userGuess == questions[questionIndex].correctAnswer) {
-		// 		correct = correct + 1;
-		// 		console.log(correct + " correct");
-		// 	}
-		// 	else {
-		// 		incorrect = incorrect + 1;
-		// 		console.log(incorrect + " incorrect");
-		// 	}
-		// 	questionIndex++;
-		// 	loadQuestion();
-		// 	$('.radios').prop('checked', false);
-		// });
-
-		// $('.radios').click(loadQuestion);
-		// this.checked = false;
 	}
 	else {
+		//i must have had something else in here at some point in time
 		console.log(questionIndex);
 	}
 };
 
+//let's get this game started
 resetGame();
 
+//play Mother warning the player about impending doom
 var buttonClick = new Audio('./assets/javascript/alien_danger.wav');
 
 //click start button to reveal questions and start countdown timer
@@ -95,6 +82,7 @@ $('button').click(function() {
   loadQuestion();
 });
 
+//log the user's guess to the questions presented on screen
 $('.radios').click(function(){
 	//get id for radio button selected by user
 	userGuess = $(this).attr('id');
@@ -112,12 +100,12 @@ $('.radios').click(function(){
 		questionIndex++;
 		checkWin();
 		loadQuestion();
-		//clear radio buttons
+		//clear radio buttons in between questions
 		$('.radios').prop('checked', false);
 		});
 
 //loop to print title indexes as game title, emulating typing letters to a CRT monitor
-//useless animation?  maybe.
+//useless animation?  maybe.  thanks google fu.
 for (var i = 0; i < title.length; i++) {
     (function(i){
         setTimeout(function(){
@@ -138,6 +126,7 @@ function checkWin() {
 		youLose();
 	}
 };
+
 //wait for title to load, then show button
 window.setTimeout(function () {
     $('button').show();
@@ -148,6 +137,7 @@ function pulse() {
     $('#result').fadeIn(300);
     $('#result').fadeOut(500);
 }
+
 //inteval for pulsing winning statement
 setInterval(pulse, 1000);
 
@@ -167,7 +157,8 @@ function checkTime() {
 		youLose();
 	}
 };
-//Game over man, game over!
+
+//Game over man, game over! (wrong movie, I know)
 function youLose() {
 	$('.body').html('<img src="./assets/javascript/NostromoExplodes.gif" width="100%"></img>');
 }
