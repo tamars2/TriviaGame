@@ -1,7 +1,7 @@
 //instead of displaying the number of correct and incorrect answers, I created win and loss results that
 //change the DOM.  I thought it would be more fun to blow up the Nostromo if the timer would run out
 //or if you couldn't hit the minimum 3 correct answers.
-//heroku test
+//heroku test ... again
 //global variables
 var title = ['M', 'U', '/', 'T', 'H', '/', 'U', 'R', ':', ' ', 'A', 'l', 'i', 'e', 'n', ' ', 'T', 'r', 'i', 'v', 'i', 'a'];
 console.log(title);
